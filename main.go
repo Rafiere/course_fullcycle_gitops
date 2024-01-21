@@ -18,4 +18,6 @@ func main() {
 	if err != nil {
 		log.Println("Um erro ocorreu ao inicializar o servidor.")
 	}
+
+	print("Servidor iniciado na porta 8085!")
 }
