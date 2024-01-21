@@ -1,9 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-resources: # Quando uma customização for feita, os arquivos abaixo serão lidos.
-  - "deployment.yaml"
-  - "service.yaml"
+resources:
+- deployment.yaml
+- service.yaml
 
 # Quando aplicarmos um comando do Kustomize, ele irá pegar tanto o "deployment" quanto o "service"
 # e adicionar uma imagem com a versão nova em ambos.
@@ -12,6 +12,6 @@ resources: # Quando uma customização for feita, os arquivos abaixo serão lido
 # O ArgoCD ficará olhando o Kustomize para saber se a versão da imagem foi alterada, assim, todas
 # as vezes que uma alteração for realizada, mudaremos o SHA e faremos um "commit".
 images:
-    - name: goserver
-      newName: rafiere/course_fullcycle_gitops
-      newTag: newtag
+- name: goserver
+  newName: rafiere/course_fullcycle_gitops
+  newTag: c2a1a710f84b8ca085185f0b388f3078ff1381ed
