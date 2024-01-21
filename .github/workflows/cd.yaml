@@ -43,4 +43,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }} # Todos os usuários do GitHub possuem esse secret por padrão.
-          repository: rafiere/course_fullcycle_gitops
+          repository: Rafiere/course_fullcycle_gitops
