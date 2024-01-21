@@ -1,12 +1,21 @@
 package main
 
-import "net/http"
+import (
+	"log"
+	"net/http"
+)
 
 func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("<h1>Hello Full Cycle</h1>"))
+		_, err := w.Write([]byte("<h1>Hello Full Cycle</h1>"))
+		if err != nil {
+			log.Println("Um erro ocorreu ao acessar o endereço '/'.")
+		}
 	})
 
-	http.ListenAndServe(":8085", nil)
+	err := http.ListenAndServe(":8085", nil)
+	if err != nil {
+		log.Println("Um erro ocorreu ao inicializar o servidor.")
+	}
 }
