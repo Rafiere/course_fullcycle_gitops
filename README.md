@@ -1,0 +1,1 @@
+Repositório do curso "GitOps" da FullCycle.
