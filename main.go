@@ -8,7 +8,7 @@ import (
 func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		_, err := w.Write([]byte("<h1>Hello Full Cycle</h1>"))
+		_, err := w.Write([]byte("<h1>Olá, ArgoCD!</h1>"))
 		if err != nil {
 			log.Println("Um erro ocorreu ao acessar o endereço '/'.")
 		}
