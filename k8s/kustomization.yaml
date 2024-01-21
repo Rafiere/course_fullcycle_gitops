@@ -14,4 +14,4 @@ resources:
 images:
 - name: goserver
   newName: rafiere/course_fullcycle_gitops
-  newTag: c2a1a710f84b8ca085185f0b388f3078ff1381ed
+  newTag: cb6e98ab8998764e5f9c55cd9820bcc27bff6d33
