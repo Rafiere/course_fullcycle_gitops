@@ -20,3 +20,27 @@ jobs:
           password: ${{secrets.DOCKER_PASSWORD}}
           repository: ${{secrets.DOCKER_USERNAME}}/course_fullcycle_gitops
           tags: ${{github.sha}}, latest #Criaremos a "tag" com o latest e com o SHA.
+
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v1 #Essa action instalará o Kustomize na máquina.
+        with:
+          kustomize-version: "3.6.1"
+
+      - name: Update Kubernetes Resources
+        env:
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+        run: | # O "|" é utilizado para quebrar linhas.
+          cd k8s
+          kustomize edit set image goserver=$DOCKER_USERNAME/course_fullcycle_gitops:$GITHUB_SHA
+
+      - name: Commit Kustomize Tag Version #Faremos um commit com o Kustomize da nova tag.
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Actions"
+          git commit -am "Bump Docker version"
+
+      - name: Push Kustomize Tag Version #Faremos um push com o Kustomize da nova tag.
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Todos os usuários do GitHub possuem esse secret por padrão.
+          repository: rafiere/course_fullcycle_gitops
