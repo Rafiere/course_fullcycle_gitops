@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout Code #Pegaremos o código do repositório e baixaremos na máquina.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Build and Push Image to DockerHub
         uses: docker/build-push-action@v1.1.0 # Essa action realiza esse "build".
