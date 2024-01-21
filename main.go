@@ -20,4 +20,5 @@ func main() {
 	}
 
 	print("Servidor iniciado na porta 8085!")
+	print("As requisições estão liberadas!")
 }
