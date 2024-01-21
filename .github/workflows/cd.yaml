@@ -1,0 +1,22 @@
+name: CD GitOps
+
+on:
+  push:
+    branches: [main] #Sempre que um "push" for feito no "branch" com o nome "main", alguns jobs serão executados.
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest #O GitHub actions preparará uma máquina com Ubuntu.
+
+    steps:
+      - name: Checkout Code #Pegaremos o código do repositório e baixaremos na máquina.
+        uses: actions/checkout@v2
+
+      - name: Build and Push Image to DockerHub
+        uses: docker/build-push-action@v1.1.0 # Essa action realiza esse "build".
+        with:
+          username: ${{secrets.DOCKER_USERNAME}} #Utilizaremos o "secret" do GitHub.
+          password: ${{secrets.DOCKER_PASSWORD}}
+          repository: ${{secrets.DOCKER_USERNAME}}/course_fullcycle_gitops
+          tags: ${{github.sha}}, latest #Criaremos a "tag" com o latest e com o SHA.
